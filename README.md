@@ -7,20 +7,20 @@
 **Data & scope.**
 - Source: Kaggle — “MMM Weekly Data (Geo India)”  
 - Subsetting: **Brand A**, **SKU 2** (weekly, multiple geos)
-- Media channels used in this run: **TV, Facebook, Print, Radio**
-- Evaluation: **rolling backtest with 12-week holdouts** (multiple time splits)
+- Media channels used in this run: TV, Facebook, Print, Radio
+- Evaluation: rolling backtest with 12-week holdouts (multiple time splits)
 
 **Key modeling decisions.**
 - **Multicollinearity check:** I computed VIF and found extreme multicollinearity among some media signals (VIF on the order of **1e12–1e14**), meaning separate channel effects are not reliably identifiable without additional information.
 - **Resolution chosen:** I used the scenario where highly collinear channels are removed / simplified (rather than forcing the model to split nearly identical signals), prioritizing **stable, defensible attribution**.
 
 **Model validation (quality + out-of-sample).**
-- Meridian’s built-in reviewer checks: **PASS** overall, with a minor **baseline review** flag (occasional small negative baseline values).
-- Rolling 12-week holdouts show performance is **stable across time** (not driven by a single split).  
+- Meridian’s built-in reviewer checks: PASS overall, with a minor baseline review flag (occasional small negative baseline values).
+- Rolling 12-week holdouts show performance is stable across time (not driven by a single split).  
   See: *Rolling backtest plots* (wMAPE and R² across holdout windows).
 
 **Attribution stability.**
-- I extracted **posterior incremental outcome** by channel for each rolling holdout window and tracked **contribution share**.
+- I extracted **posterior incremental outcome** by channel for each rolling holdout window and tracked contribution share.
 - Result: channel shares are generally stable across windows, supporting robust attribution rather than window-specific artifacts.
 
 **Decision insights (holdout window).**
@@ -216,6 +216,21 @@ A simple decision rule is to move budget from the lowest marginal-ROI channels t
 In this holdout window, that implies shifting budget away from Facebook (and possibly Print) and toward TV (first) and Radio (second).
 
 
+## ROI vs Marginal ROI (decision-oriented)
+...your ROI bullets...
+...ROI plot...
+
+...your Marginal ROI bullets...
+...Marginal ROI plot...
+
+### Simple what-if budget reallocation (back-of-the-envelope)
+(paste your text here)
+
+<p align="center">
+  <img src="PASTE_YOUR_WHATIF_PLOT_URL_OR_PATH" width="650" />
+  <br/>
+  <sub><em>Expected ΔOutcome from shifting 10% of Facebook spend to higher-ROI channels (approximation on the most recent 12-week holdout).</em></sub>
+</p>
 
 
 ## Data source
