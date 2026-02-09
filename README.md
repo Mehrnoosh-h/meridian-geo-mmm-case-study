@@ -92,7 +92,32 @@ Because this Meridian version’s `Analyzer.predictive_accuracy()` reports metri
 
 **Interpretation:** Geo-level performance is consistent between Train and Test (R² ≈ 0.95 and wMAPE ≈ 0.11–0.12), suggesting the model generalizes reasonably well to unseen weeks. National-level errors are much smaller because aggregating across geographies reduces noise and cancels some geo-specific fluctuations, so MAPE/wMAPE on the national series can look substantially lower than geo-level metrics.
 
+## Rolling backtest (stability across time)
 
+To ensure the results are not dependent on a single train/test split, I ran a **rolling time-series backtest** using **6 non-overlapping holdout windows** (each **12 weeks**). For each split, I computed Meridian’s predictive accuracy metrics on the **Test window only**.
+
+### Test-window stability (across 6 splits)
+
+**Geo-level (harder; one observation per geo×week):**
+- **wMAPE:** mean **0.1173**, std **0.0137** (range **0.1065–0.1442**)
+- **MAPE:** mean **0.1471**, std **0.0153** (range **0.1329–0.1719**)
+- **R²:** mean **0.9436**, std **0.0205** (range **0.9040–0.9607**)
+
+**National-level (easier; aggregated across geos, lower noise):**
+- **wMAPE:** mean **0.0183**, std **0.0098** (range **0.0071–0.0342**)
+- **MAPE:** mean **0.0188**, std **0.0091** (range **0.0077–0.0347**)
+- **R²:** mean **0.9541**, std **0.0512** (range **0.8580–0.9959**)
+
+### Interpretation
+Overall, geo-level metrics are **stable across time** (Test wMAPE ≈ **0.11–0.14**, R² ≈ **0.90–0.96**), suggesting the model generalizes reasonably well to unseen weeks. National-level errors are much smaller because aggregation across geographies reduces noise and cancels some geo-specific fluctuations, so national metrics can look substantially better than geo-level metrics.
+
+Notably, the **worst geo-level Test window** (wMAPE ≈ **0.1442**, R² ≈ **0.9040**) indicates a period where the model had more difficulty generalizing—potentially due to a regime shift (promotions, distribution changes, or seasonality effects) during that specific time window.
+
+<img width="667" height="954" alt="image" src="https://github.com/user-attachments/assets/28b7d875-bfdb-4493-9196-6046588fb67b" />
+### Rolling backtest (12-week holdouts)
+![Rolling backtest: geo-level Test wMAPE and R²](reports/figures/rolling_backtest_geo_wmape_r2.png)
+
+Each point is one 12-week holdout window. The curves show how performance varies across time; this helps confirm results are stable and not driven by a single train/test split.
 
 
 ## Data source
