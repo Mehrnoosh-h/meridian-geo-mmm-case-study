@@ -160,7 +160,7 @@ After fitting the model, I computed both **ROI** and **Marginal ROI** on the **m
 <p align="center">
   <img src="https://github.com/user-attachments/assets/c76b2e12-96c7-4c53-8e27-43e86f13bcb9" width="520" />
   <br/>
-  <sub><em>Marginal ROI by channel on the most recent 12-week holdout window (posterior mean). Marginal ROI reflects “next-dollar” efficiency and is the key quantity for budget reallocation.</em></sub>
+  <sub><em>Marginal ROI by channel on the most recent 12-week holdout window (posterior mean). </em></sub>
 </p>
 
 
