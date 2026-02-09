@@ -114,9 +114,6 @@ Overall, geo-level metrics are **stable across time** (Test wMAPE ≈ **0.11–0
 Notably, the **worst geo-level Test window** (wMAPE ≈ **0.1442**, R² ≈ **0.9040**) indicates a period where the model had more difficulty generalizing—potentially due to a regime shift (promotions, distribution changes, or seasonality effects) during that specific time window.
 
 
-
-### Rolling backtest (12-week holdouts)
-
 ### Rolling backtest (12-week holdouts)
 
 <table border="0" cellspacing="0" cellpadding="0">
