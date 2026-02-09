@@ -90,6 +90,7 @@ Because this Meridian version’s `Analyzer.predictive_accuracy()` reports metri
 | Train | MAPE      | 0.1457 | 0.0277 |
 | Train | wMAPE     | 0.1200 | 0.0244 |
 
+**Interpretation:** Geo-level performance is consistent between Train and Test (R² ≈ 0.95 and wMAPE ≈ 0.11–0.12), suggesting the model generalizes reasonably well to unseen weeks. National-level errors are much smaller because aggregating across geographies reduces noise and cancels some geo-specific fluctuations, so MAPE/wMAPE on the national series can look substantially lower than geo-level metrics.
 
 
 
