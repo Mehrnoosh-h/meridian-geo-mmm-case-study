@@ -218,7 +218,6 @@ In this holdout window, that implies shifting budget away from Facebook (and pos
 ### Simple what-if budget reallocation (back-of-the-envelope)
 
 To make the MMM outputs decision-oriented, I ran a simple reallocation simulation on the most recent 12-week holdout window:
-<img width="737" height="102" alt="image" src="https://github.com/user-attachments/assets/74d60ce1-7ede-4ce5-9fdd-5b2fd01ccfb3" />
 
 - Shift **10% of Facebook spend** to another channel  
 - Approximate impact using: **ΔOutcome ≈ (ROI_to − ROI_from) × shifted_spend**
