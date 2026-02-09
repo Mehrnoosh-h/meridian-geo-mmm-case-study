@@ -216,21 +216,21 @@ A simple decision rule is to move budget from the lowest marginal-ROI channels t
 In this holdout window, that implies shifting budget away from Facebook (and possibly Print) and toward TV (first) and Radio (second).
 
 
-## ROI vs Marginal ROI (decision-oriented)
-...your ROI bullets...
-...ROI plot...
-
-...your Marginal ROI bullets...
-...Marginal ROI plot...
-
 ### Simple what-if budget reallocation (back-of-the-envelope)
-(paste your text here)
 
-<p align="center">
-  <img src="PASTE_YOUR_WHATIF_PLOT_URL_OR_PATH" width="650" />
-  <br/>
-  <sub><em>Expected ΔOutcome from shifting 10% of Facebook spend to higher-ROI channels (approximation on the most recent 12-week holdout).</em></sub>
-</p>
+To make the MMM outputs decision-oriented, I ran a simple reallocation simulation on the most recent 12-week holdout window:
+
+- Shift **10% of Facebook spend** to another channel  
+- Approximate impact using: **ΔOutcome ≈ (ROI_to − ROI_from) × shifted_spend**
+
+For the Facebook → TV shift:
+- Facebook holdout spend ≈ **6.44M**
+- Shifted spend (10%) ≈ **0.644M**
+- ROI(TV) − ROI(Facebook) ≈ **0.150**
+- Expected ΔOutcome ≈ **96,904** (in outcome units)
+
+This is an intentionally simple approximation (not a full optimizer), but it translates ROI results into a concrete, testable budget action.
+
 
 
 ## Data source
