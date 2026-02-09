@@ -130,6 +130,42 @@ Each point is one 12-week holdout window. The curves show how performance varies
 **Attribution stability:** Using the same rolling 12-week holdouts, I extracted posterior incremental outcome by channel and tracked each channel’s contribution share. The box/line plots show how stable (or variable) channel attribution is across time windows—useful for assessing whether ROI/contributions are robust or sensitive to the evaluation period.
 <img width="1416" height="473" alt="image" src="https://github.com/user-attachments/assets/49a6be7a-a284-4465-98c7-bcb181c57a53" />
 
+## ROI vs Marginal ROI (decision-oriented)
+
+After fitting the model, I computed both **ROI** and **Marginal ROI** on the **most recent 12-week holdout window**.
+
+### What they mean
+- **ROI** answers: *“On average, how much incremental outcome do I get per unit spend in this channel over the evaluation period?”*
+- **Marginal ROI** answers: *“If I add one more unit of spend **right now**, how much incremental outcome do I get?”*  
+  This is the key metric for **budget reallocation**, because MMM channels often show **diminishing returns**.
+
+**ROI (posterior mean):**
+- TV: **0.230**
+- Radio: **0.223**
+- Print: **0.147**
+- Facebook: **0.080**
+
+<p align="center">
+  <img src="PATH_OR_GITHUB_URL_TO_ROI_PLOT.png" width="650" />
+  <br/>
+  <sub><em>ROI by channel on the most recent 12-week holdout window (posterior mean).</em></sub>
+</p>
+
+
+**Marginal ROI (posterior mean):**
+- TV: **0.108**
+- Radio: **0.059**
+- Print: **0.033**
+- Facebook: **0.032**
+
+### Interpretation
+- TV and Radio are the most efficient channels in this window (highest ROI), and they also have the strongest **marginal ROI**, meaning additional spend is expected to generate the largest incremental gains **at the margin**.
+- Facebook has the lowest ROI and a low marginal ROI, suggesting it is the weakest candidate for incremental budget in this period.
+
+### Actionable reallocation rule
+A simple decision rule is to **move budget from the lowest marginal-ROI channels toward the highest marginal-ROI channels** until marginal ROIs begin to converge (i.e., the “next dollar” is equally valuable across channels).  
+In this holdout window, that implies shifting budget **away from Facebook (and possibly Print)** and toward **TV (first) and Radio (second)**.
+
 
 
 
