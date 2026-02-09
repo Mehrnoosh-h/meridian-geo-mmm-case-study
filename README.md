@@ -118,7 +118,9 @@ Notably, the **worst geo-level Test window** (wMAPE ≈ **0.1442**, R² ≈ **0.
 ### Rolling backtest (12-week holdouts)
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/28b7d875-bfdb-4493-9196-6046588fb67b" width="500" />
+  <img width="628" height="468" alt="image" src="https://github.com/user-attachments/assets/7b8f1872-3aa6-4fea-b7e2-7eee3d18e11e" /> ![Uploading image.png…]()
+
+>
   <br/>
   <sub><em>Rolling backtest: geo-level Test wMAPE and R²</em></sub>
 </p>
