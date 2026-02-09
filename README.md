@@ -145,11 +145,8 @@ After fitting the model, I computed both **ROI** and **Marginal ROI** on the **m
 - Print: **0.147**
 - Facebook: **0.080**
 
-<p align="center">
-  <img src="PATH_OR_GITHUB_URL_TO_ROI_PLOT.png" width="650" />
-  <br/>
-  <sub><em>ROI by channel on the most recent 12-week holdout window (posterior mean).</em></sub>
-</p>
+<img width="640" height="457" alt="image" src="https://github.com/user-attachments/assets/ccc59c50-d016-4d82-9850-17cb47f081cb" />
+
 
 
 **Marginal ROI (posterior mean):**
@@ -157,6 +154,8 @@ After fitting the model, I computed both **ROI** and **Marginal ROI** on the **m
 - Radio: **0.059**
 - Print: **0.033**
 - Facebook: **0.032**
+  <img width="652" height="460" alt="image" src="https://github.com/user-attachments/assets/c76b2e12-96c7-4c53-8e27-43e86f13bcb9" />
+
 
 ### Interpretation
 - TV and Radio are the most efficient channels in this window (highest ROI), and they also have the strongest **marginal ROI**, meaning additional spend is expected to generate the largest incremental gains **at the margin**.
