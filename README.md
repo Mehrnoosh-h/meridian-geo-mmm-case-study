@@ -118,7 +118,24 @@ Notably, the **worst geo-level Test window** (wMAPE ≈ **0.1442**, R² ≈ **0.
 ### Rolling backtest (12-week holdouts)
 
 
-Each point is one 12-week holdout window. The curves show how performance varies across time; this helps confirm results are stable and not driven by a single train/test split.
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/7b8f1872-3aa6-4fea-b7e2-7eee3d18e11e" width="420" />
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/957fd566-f58b-488b-8a3c-e05a0897a3f7" width="420" />
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center">
+      <sub><em>Rolling backtest: geo-level Test wMAPE (left) and Test R² (right) across 12-week holdout windows.</em></sub>
+    </td>
+  </tr>
+</table>
+
+Each point represents one 12-week holdout window. Tracking wMAPE and R² across rolling splits helps verify that predictive performance is stable over time and not driven by a single train/test split.
+
 
 
 **Attribution stability:** Using the same rolling 12-week holdouts, I extracted posterior incremental outcome by channel and tracked each channel’s contribution share. The box/line plots show how stable (or variable) channel attribution is across time windows—useful for assessing whether ROI/contributions are robust or sensitive to the evaluation period.
