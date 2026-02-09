@@ -212,7 +212,7 @@ After fitting the model, I computed both ROI and Marginal ROI on the most recent
 
 ### Actionable reallocation rule
 A simple decision rule is to move budget from the lowest marginal-ROI channels toward the highest marginal-ROI channels until marginal ROIs begin to converge (i.e., the “next dollar” is equally valuable across channels).  
-In this holdout window, that implies shifting budget away from Facebook (and possibly Print) and toward TV (first) and Radio (second).
+In this holdout window, that implies shifting budget away from Facebook (and possibly Print) and toward TV (first) and Radio (second). The what-if simulation below shows the approximate expected lift from shifting 10% of Facebook spend to TV/Radio in the holdout window.
 
 
 ### Simple what-if budget reallocation (back-of-the-envelope)
