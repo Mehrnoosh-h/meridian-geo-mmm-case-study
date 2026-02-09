@@ -72,6 +72,28 @@ In our comparison, Scenario B (removing Instagram & YouTube) reduced this issue:
 
 So, while both are still marked “REVIEW,” **Scenario B shows fewer negative-baseline draws** and is slightly more stable on this diagnostic. I treated this as a minor modeling artifact and verified it by visually inspecting the baseline curve in the model-fit charts; occasional small dips are expected in Bayesian MMM and do not invalidate the overall results.
 
+## Out-of-sample (holdout) evaluation
+
+I evaluated generalization using a **time-based holdout**:
+- **Train window:** 2022-07-04 → 2025-03-31 (144 weeks)
+- **Test (holdout) window:** 2025-04-07 → 2025-06-23 (12 weeks)
+
+Because this Meridian version’s `Analyzer.predictive_accuracy()` reports metrics for a user-selected subset of dates (via `selected_times`) and does not automatically tag `Train/Test` inside the returned object, I computed **Train** and **Test** metrics by running `predictive_accuracy()` **twice**: once on the training weeks and once on the holdout weeks.
+
+### Predictive accuracy (Meridian)
+| Evaluation set | Metric     | Geo-level | National-level |
+|---|---|---:|---:|
+| Test  | R_Squared | 0.9483 | 0.9529 |
+| Test  | MAPE      | 0.1343 | 0.0185 |
+| Test  | wMAPE     | 0.1117 | 0.0182 |
+| Train | R_Squared | 0.9480 | 0.9889 |
+| Train | MAPE      | 0.1457 | 0.0277 |
+| Train | wMAPE     | 0.1200 | 0.0244 |
+
+
+
+
+
 ## Data source
 This project uses the **“MMM Weekly Data – Geo: India”** dataset from Kaggle:  
 https://www.kaggle.com/datasets/subhagatoadak/mmm-weekly-data-geoindia
