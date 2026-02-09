@@ -188,6 +188,6 @@ It contains **multiple brands**, and for each brand, **multiple SKUs** (products
 - **Brand:** Brand A  
 - **SKU:** SKU 2
 
-All Meridian model training and comparisons in this repository are based on this filtered **Brand A / SKU 2** subset.
+All Meridian model training and comparisons in this repository are based on this filtered Brand A / SKU 2 subset.
 
 
