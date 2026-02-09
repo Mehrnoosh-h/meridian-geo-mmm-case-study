@@ -221,7 +221,10 @@ To make the MMM outputs decision-oriented, I ran a simple reallocation simulatio
 
 - Shift **10% of Facebook spend** to another channel  
 - Approximate impact using: **ΔOutcome ≈ (ROI_to − ROI_from) × shifted_spend**
-<img width="656" height="464" alt="image" src="https://github.com/user-attachments/assets/27af49b1-a299-4805-9ef9-884fafbc0bf6" />
+  
+<p align="center">
+  <img width="656" height="464" alt="image" src="https://github.com/user-attachments/assets/27af49b1-a299-4805-9ef9-884fafbc0bf6" />
+</p>
 
 Result: FB→TV yields the largest expected lift (≈96.9k), followed by FB→Radio (≈92.4k) in this holdout window.
 For the Facebook → TV shift:
