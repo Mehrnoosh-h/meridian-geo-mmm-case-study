@@ -117,24 +117,25 @@ Notably, the **worst geo-level Test window** (wMAPE ≈ **0.1442**, R² ≈ **0.
 
 ### Rolling backtest (12-week holdouts)
 
+### Rolling backtest (12-week holdouts)
 
-<table>
+<table border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td align="center">
-      <img src="https://github.com/user-attachments/assets/7b8f1872-3aa6-4fea-b7e2-7eee3d18e11e" width="420" />
+    <td align="center" valign="top">
+      <img src="https://github.com/user-attachments/assets/7b8f1872-3aa6-4fea-b7e2-7eee3d18e11e" width="480" />
     </td>
-    <td align="center">
-      <img src="https://github.com/user-attachments/assets/957fd566-f58b-488b-8a3c-e05a0897a3f7" width="420" />
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" align="center">
-      <sub><em>Rolling backtest: geo-level Test wMAPE (left) and Test R² (right) across 12-week holdout windows.</em></sub>
+    <td align="center" valign="top">
+      <img src="https://github.com/user-attachments/assets/957fd566-f58b-488b-8a3c-e05a0897a3f7" width="480" />
     </td>
   </tr>
 </table>
 
-Each point represents one 12-week holdout window. Tracking wMAPE and R² across rolling splits helps verify that predictive performance is stable over time and not driven by a single train/test split.
+<p align="center">
+  <sub><em>Rolling backtest: geo-level Test wMAPE (left) and Test R² (right) across 12-week holdout windows.</em></sub>
+</p>
+
+Each point represents one 12-week holdout window. Tracking wMAPE and R² across rolling splits helps confirm performance is stable over time and not driven by a single train/test split.
+
 
 
 
