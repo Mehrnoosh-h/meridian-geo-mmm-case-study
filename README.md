@@ -46,11 +46,7 @@ I quantified multicollinearity using Variance Inflation Factor (VIF). VIF measur
 
 For my selected brand/SKU, VIF was extremely large:
 
-| Channel   | VIF |
-|----------|-----:|
-| YouTube  | 1.233863e+14 |
-| Facebook | 8.677456e+12 |
-| Instagram| 1.324588e+14 |
+
 
 
 <p align="center"><strong>For my selected brand/SKU, VIF was extremely large:</strong></p>
@@ -68,20 +64,6 @@ For my selected brand/SKU, VIF was extremely large:
     <tr><td>Instagram</td><td align="right">1.324588e+14</td></tr>
   </tbody>
 </table>
-
-
-<div align="center">
-  <table>
-    <thead>
-      <tr><th>Channel</th><th align="right">VIF</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>YouTube</td><td align="right">1.233863e+14</td></tr>
-      <tr><td>Facebook</td><td align="right">8.677456e+12</td></tr>
-      <tr><td>Instagram</td><td align="right">1.324588e+14</td></tr>
-    </tbody>
-  </table>
-</div>
 
 
 These values indicate **near-perfect collinearity** between the channels (they carry almost the same signal), so estimating separate effects for each one is not identifiable from the data alone.
