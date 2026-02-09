@@ -128,7 +128,8 @@ Each point is one 12-week holdout window. The curves show how performance varies
 
 
 **Attribution stability:** Using the same rolling 12-week holdouts, I extracted posterior incremental outcome by channel and tracked each channel’s contribution share. The box/line plots show how stable (or variable) channel attribution is across time windows—useful for assessing whether ROI/contributions are robust or sensitive to the evaluation period.
-<img width="792" height="556" alt="image" src="https://github.com/user-attachments/assets/8108c0ac-f265-4090-8def-93059a46b80d" /> <img width="655" height="469" alt="image" src="https://github.com/user-attachments/assets/7a61d997-5fa1-4374-b187-95e6c10261be" />
+<img width="1416" height="473" alt="image" src="https://github.com/user-attachments/assets/49a6be7a-a284-4465-98c7-bcb181c57a53" />
+
 
 
 
