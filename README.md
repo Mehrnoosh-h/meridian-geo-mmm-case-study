@@ -1,84 +1,89 @@
-# meridian-geo-mmm-case-study
-Multicollinearity check (what it is and why it matters)
+## Multicollinearity check (Meridian geo MMM, 1 brand + 1 SKU)
 
-Multicollinearity happens when two or more predictor variables (here: media channels) move together so strongly that the model can’t reliably separate their individual effects. In MMM, this usually shows up as unstable channel coefficients/contributions: the total marketing effect can still be estimated well, but the model may “swap credit” between correlated channels (e.g., YouTube vs Instagram), making channel-level ROI and budget recommendations less trustworthy.
+### What is multicollinearity (and why it matters in MMM)?
+**Multicollinearity** happens when two or more predictors (here: media channels) move together so strongly that the model cannot reliably separate their individual effects. In MMM, this usually means:
+- the model can still fit the KPI well (good overall R² / wMAPE),
+- but **channel-level attribution and ROI can become unstable** (the model may “swap credit” between correlated channels).
 
-How we detected multicollinearity
+### How we checked multicollinearity
+I quantified multicollinearity using **Variance Inflation Factor (VIF)**. VIF measures how much a coefficient’s variance is inflated due to correlation with other predictors:
+- **VIF ≈ 1**: no issue
+- **VIF 5–10**: concerning
+- **VIF > 10**: strong multicollinearity (channel-level interpretation becomes unreliable)
 
-We used Variance Inflation Factor (VIF) to quantify it. VIF measures how much the variance of a coefficient is inflated due to correlation with other predictors:
+For my selected brand/SKU, VIF was extremely large:
 
-VIF ≈ 1: little to no correlation with other predictors
+| Channel   | VIF |
+|----------|-----:|
+| YouTube  | 1.233863e+14 |
+| Facebook | 8.677456e+12 |
+| Instagram| 1.324588e+14 |
 
-VIF 5–10: concerning multicollinearity
+These values indicate **near-perfect collinearity** between the channels (they carry almost the same signal), so estimating separate effects for each one is not identifiable from the data alone.
 
-VIF > 10: strong multicollinearity (interpretation of individual effects becomes unreliable)
+### Options to handle multicollinearity
+Common strategies in MMM are:
+1) **Combine correlated channels** into one “bundle” feature (e.g., `paid_social_video_bundle`).
+   - Pros: keeps signal, improves stability, attribution is defensible at the bundle level.
+   - Cons: you lose separate ROI for each channel inside the bundle.
+2) **Remove one or more channels** and keep a representative channel.
+   - Pros: simple; improves identifiability.
+   - Cons: you may drop true signal and shift credit to other variables (potentially biased attribution).
+3) **Stronger priors / regularization**
+   - Can help, but with near-perfect collinearity it often cannot fully resolve channel-level identifiability.
+4) **Calibration with experiments**
+   - Best for separating channels, but requires extra data (lift tests / geo experiments).
 
-In our data (one selected brand + one SKU), VIF values were extremely large:
+### What I tested (two scenarios)
+Because YouTube/Instagram/Facebook were extremely collinear, I evaluated two scenarios:
 
-YouTube: 1.23e+14
+**Scenario A — Combine correlated channels**
+- I combined the highly correlated channels into a single bundle feature and fit Meridian.
+- `reviewer.ModelReviewer(mmm).run()` summary (combined):
+  - Overall Status: **PASS**
+  - Baseline Check: **REVIEW** (P(baseline < 0) = 0.54)
+  - Goodness of Fit: **R² = 0.9496**, **MAPE = 0.1444**, **wMAPE = 0.1186**
 
-Instagram: 1.32e+14
+**Scenario B — Remove Instagram and YouTube**
+- I removed Instagram and YouTube and fit the model using the remaining channels.
+- `reviewer.ModelReviewer(mmm).run()` summary (removed):
+  - Overall Status: **PASS**
+  - Baseline Check: **REVIEW** (P(baseline < 0) = 0.37)
+  - Goodness of Fit: **R² = 0.9490**, **MAPE = 0.1448**, **wMAPE = 0.1192**
 
-Facebook: 8.68e+12
+### Final choice and why
+Both scenarios achieved **nearly identical fit**, which confirms multicollinearity is mainly an **interpretability** problem (not a pure predictive-performance problem).
 
-These values indicate near-perfect collinearity between the channels (practically the same signal), so keeping them as separate regressors would make channel attribution and ROI estimates unstable.
+**I chose Scenario B (remove Instagram and YouTube)** to reduce redundancy and improve identifiability in channel attribution. Given the extremely large VIF values (≈1e12–1e14), the three channels were carrying almost the same signal; keeping all of them can lead to unstable credit-splitting. Removing two highly collinear channels:
+- simplifies the model and reduces attribution ambiguity,
+- makes the remaining channel effects easier to interpret and compare,
+- keeps overall model fit essentially unchanged while avoiding duplicated signals.
 
-Options to address multicollinearity in MMM
+This choice is especially reasonable when the removed channels are **highly overlapping/duplicative** in timing and spend patterns, or when a simpler, more interpretable model is preferred for reporting and decision-making.
+### Note on the “negative baseline” diagnostic
+In both scenarios, the Model Reviewer flagged **Baseline Check: REVIEW**, meaning the model assigns some posterior probability that the **baseline contribution dips below zero** at certain time points. This does **not** mean the model “failed.” It typically happens when:
+- the KPI is very low in some weeks (or noisy),
+- strong seasonality/controls + media explain most variation,
+- the model is fitting small residual fluctuations and a small portion of posterior draws cross below zero.
 
-Common approaches include:
+In our comparison, Scenario B (removing Instagram & YouTube) reduced this issue:
+- Scenario A (combined): P(baseline < 0) = **0.54**
+- Scenario B (removed): P(baseline < 0) = **0.37**
 
-Combine correlated channels
+So, while both are still marked “REVIEW,” **Scenario B shows fewer negative-baseline draws** and is slightly more stable on this diagnostic. I treated this as a minor modeling artifact and verified it by visually inspecting the baseline curve in the model-fit charts; occasional small dips are expected in Bayesian MMM and do not invalidate the overall results.
 
-Create a composite feature (e.g., “Video+Social”) by summing spend/impressions across the correlated channels.
+## Data source
+This project uses the **“MMM Weekly Data – Geo: India”** dataset from Kaggle:  
+https://www.kaggle.com/datasets/subhagatoadak/mmm-weekly-data-geoindia
 
-Pros: keeps the overall marketing signal; reduces instability; attribution becomes stable at the group level.
+## Dataset description
+The dataset is organized as a **weekly, geo-level panel** (multiple geographies observed over time) and includes multiple marketing/media variables along with outcome (KPI) variables suitable for marketing mix modeling.
 
-Cons: you lose separate ROI for each channel within the combined group.
+It contains **multiple brands**, and for each brand, **multiple SKUs** (products). To keep the modeling scope focused and to produce interpretable results, I filtered the dataset to a single product line:
 
-Remove one or more correlated channels
+- **Brand:** Brand A  
+- **SKU:** SKU 2
 
-Drop channels that duplicate the same signal, especially if they’re minor or redundant for the business question.
+All Meridian model training and comparisons in this repository are based on this filtered **Brand A / SKU 2** subset.
 
-Pros: simplest; improves identifiability.
 
-Cons: you may drop real signal and shift credit to remaining channels, potentially biasing channel-level conclusions.
-
-Regularization / stronger priors (Bayesian shrinkage)
-
-Encourage the model to avoid extreme attributions under collinearity.
-
-Pros: can help stability without dropping features.
-
-Cons: with near-perfect collinearity, regularization often can’t fully fix identifiability—credit splitting may still be arbitrary.
-
-Use experimental calibration / external priors
-
-If you have lift tests or geo experiments for a channel, you can anchor its effect.
-
-Pros: best for true channel-level attribution.
-
-Cons: requires extra data.
-
-What we did in this project (two scenarios)
-
-Because YouTube/Instagram/Facebook were extremely collinear, we tested two practical scenarios:
-
-Scenario A — Combine correlated channels
-We combined the highly correlated media channels into a single grouped channel and fit Meridian.
-Model reviewer summary (combined):
-
-Overall status: PASS
-
-R² ≈ 0.9496, wMAPE ≈ 0.1186
-
-Baseline check: REVIEW (posterior P(baseline < 0) = 0.54)
-
-Scenario B — Remove Instagram and YouTube
-We removed two of the three highly collinear channels and refit.
-Model reviewer summary (removed):
-
-Overall status: PASS
-
-R² ≈ 0.9490, wMAPE ≈ 0.1192
-
-Baseline check: REVIEW (posterior P(baseline < 0) = 0.37)
