@@ -189,7 +189,7 @@ After fitting the model, I computed both ROI and Marginal ROI on the most recent
 <p align="center">
   <img src="https://github.com/user-attachments/assets/c76b2e12-96c7-4c53-8e27-43e86f13bcb9" width="520" />
   <br/>
-  <sub><em>Marginal ROI by channel on the most recent 12-week holdout window (posterior mean). </em></sub>
+  <sub><em>ROI by channel on the most recent 12-week holdout window (posterior mean). </em></sub>
 </p>
 
 
@@ -202,7 +202,7 @@ After fitting the model, I computed both ROI and Marginal ROI on the most recent
 <p align="center">
   <img src="https://github.com/user-attachments/assets/ccc59c50-d016-4d82-9850-17cb47f081cb" width="520" />
   <br/>
-  <sub><em>ROI by channel on the most recent 12-week holdout window (posterior mean).</em></sub>
+  <sub><em>Marginal ROI by channel on the most recent 12-week holdout window (posterior mean).</em></sub>
 </p>
 
 
@@ -223,6 +223,7 @@ To make the MMM outputs decision-oriented, I ran a simple reallocation simulatio
 - Approximate impact using: **ΔOutcome ≈ (ROI_to − ROI_from) × shifted_spend**
 <img width="656" height="464" alt="image" src="https://github.com/user-attachments/assets/27af49b1-a299-4805-9ef9-884fafbc0bf6" />
 
+Result: FB→TV yields the largest expected lift (≈96.9k), followed by FB→Radio (≈92.4k) in this holdout window.
 For the Facebook → TV shift:
 - Facebook holdout spend ≈ **6.44M**
 - Shifted spend (10%) ≈ **0.644M**
