@@ -117,14 +117,6 @@ Notably, the **worst geo-level Test window** (wMAPE ≈ **0.1442**, R² ≈ **0.
 
 ### Rolling backtest (12-week holdouts)
 
-<p align="center">
-  <img width="628" height="468" alt="image" src="https://github.com/user-attachments/assets/7b8f1872-3aa6-4fea-b7e2-7eee3d18e11e" /> ![Uploading image.png…]()
-
->
-  <br/>
-  <sub><em>Rolling backtest: geo-level Test wMAPE and R²</em></sub>
-</p>
-
 
 Each point is one 12-week holdout window. The curves show how performance varies across time; this helps confirm results are stable and not driven by a single train/test split.
 
