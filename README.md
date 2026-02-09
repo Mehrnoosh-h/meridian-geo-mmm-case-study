@@ -1,5 +1,38 @@
 ## Multicollinearity check (Meridian geo MMM, 1 brand + 1 SKU)
 
+## Executive summary 
+
+**Goal.** Build a geo-level Marketing Mix Model (MMM) using Google Meridian to estimate media contributions and derive actionable budget insights.
+
+**Data & scope.**
+- Source: Kaggle — “MMM Weekly Data (Geo India)”  
+- Subsetting: **Brand A**, **SKU 2** (weekly, multiple geos)
+- Media channels used in this run: **TV, Facebook, Print, Radio**
+- Evaluation: **rolling backtest with 12-week holdouts** (multiple time splits)
+
+**Key modeling decisions.**
+- **Multicollinearity check:** I computed VIF and found extreme multicollinearity among some media signals (VIF on the order of **1e12–1e14**), meaning separate channel effects are not reliably identifiable without additional information.
+- **Resolution chosen:** I used the scenario where highly collinear channels are removed / simplified (rather than forcing the model to split nearly identical signals), prioritizing **stable, defensible attribution**.
+
+**Model validation (quality + out-of-sample).**
+- Meridian’s built-in reviewer checks: **PASS** overall, with a minor **baseline review** flag (occasional small negative baseline values).
+- Rolling 12-week holdouts show performance is **stable across time** (not driven by a single split).  
+  See: *Rolling backtest plots* (wMAPE and R² across holdout windows).
+
+**Attribution stability.**
+- I extracted **posterior incremental outcome** by channel for each rolling holdout window and tracked **contribution share**.
+- Result: channel shares are generally stable across windows, supporting robust attribution rather than window-specific artifacts.
+
+**Decision insights (holdout window).**
+- **ROI (posterior mean):** TV **0.230**, Radio **0.223**, Print **0.147**, Facebook **0.080**
+- **Marginal ROI (posterior mean):** TV **0.108**, Radio **0.059**, Print **0.033**, Facebook **0.032**
+- **Implication:** TV and Radio are consistently the strongest candidates for incremental budget (highest “next-dollar” efficiency), while Facebook is the weakest in this window.
+
+**Repo outputs.**
+- Figures: rolling backtest plots, attribution stability plots, ROI & marginal ROI charts
+- Tables: holdout metrics by split, contribution shares by split, ROI summaries (posterior mean + uncertainty)
+
+
 ### What is multicollinearity (and why it matters in MMM)?
 **Multicollinearity** happens when two or more predictors (here: media channels) move together so strongly that the model cannot reliably separate their individual effects. In MMM, this usually means:
 - the model can still fit the KPI well (good overall R² / wMAPE),
