@@ -166,11 +166,11 @@ After fitting the model, I computed both **ROI** and **Marginal ROI** on the **m
 
 
 ### Interpretation
-- TV and Radio are the most efficient channels in this window (highest ROI), and they also have the strongest **marginal ROI**, meaning additional spend is expected to generate the largest incremental gains **at the margin**.
+- TV and Radio are the most efficient channels in this window (highest ROI), and they also have the strongest marginal ROI, meaning additional spend is expected to generate the largest incremental gains at the margin.
 - Facebook has the lowest ROI and a low marginal ROI, suggesting it is the weakest candidate for incremental budget in this period.
 
 ### Actionable reallocation rule
-A simple decision rule is to **move budget from the lowest marginal-ROI channels toward the highest marginal-ROI channels** until marginal ROIs begin to converge (i.e., the “next dollar” is equally valuable across channels).  
+A simple decision rule is to move budget from the lowest marginal-ROI channels toward the highest marginal-ROI channels until marginal ROIs begin to converge (i.e., the “next dollar” is equally valuable across channels).  
 In this holdout window, that implies shifting budget **away from Facebook (and possibly Print)** and toward **TV (first) and Radio (second)**.
 
 
