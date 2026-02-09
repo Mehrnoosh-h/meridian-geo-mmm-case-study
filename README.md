@@ -145,16 +145,24 @@ After fitting the model, I computed both **ROI** and **Marginal ROI** on the **m
 - Print: **0.147**
 - Facebook: **0.080**
 
-<img width="640" height="457" alt="image" src="https://github.com/user-attachments/assets/ccc59c50-d016-4d82-9850-17cb47f081cb" />
-
-
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/ccc59c50-d016-4d82-9850-17cb47f081cb" width="520" />
+  <br/>
+  <sub><em>ROI by channel on the most recent 12-week holdout window (posterior mean).</em></sub>
+</p>
 
 **Marginal ROI (posterior mean):**
 - TV: **0.108**
 - Radio: **0.059**
 - Print: **0.033**
 - Facebook: **0.032**
-  <img width="652" height="460" alt="image" src="https://github.com/user-attachments/assets/c76b2e12-96c7-4c53-8e27-43e86f13bcb9" />
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/c76b2e12-96c7-4c53-8e27-43e86f13bcb9" width="520" />
+  <br/>
+  <sub><em>Marginal ROI by channel on the most recent 12-week holdout window (posterior mean). Marginal ROI reflects “next-dollar” efficiency and is the key quantity for budget reallocation.</em></sub>
+</p>
+
 
 
 ### Interpretation
