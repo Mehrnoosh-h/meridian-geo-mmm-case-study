@@ -52,6 +52,26 @@ For my selected brand/SKU, VIF was extremely large:
 | Facebook | 8.677456e+12 |
 | Instagram| 1.324588e+14 |
 
+
+<p align="center"><strong>For my selected brand/SKU, VIF was extremely large:</strong></p>
+
+<table align="center">
+  <thead>
+    <tr>
+      <th>Channel</th>
+      <th align="right">VIF</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>YouTube</td><td align="right">1.233863e+14</td></tr>
+    <tr><td>Facebook</td><td align="right">8.677456e+12</td></tr>
+    <tr><td>Instagram</td><td align="right">1.324588e+14</td></tr>
+  </tbody>
+</table>
+
+
+
+
 These values indicate **near-perfect collinearity** between the channels (they carry almost the same signal), so estimating separate effects for each one is not identifiable from the data alone.
 
 ### Options to handle multicollinearity
