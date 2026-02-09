@@ -127,6 +127,9 @@ Notably, the **worst geo-level Test window** (wMAPE ≈ **0.1442**, R² ≈ **0.
 Each point is one 12-week holdout window. The curves show how performance varies across time; this helps confirm results are stable and not driven by a single train/test split.
 
 
+**Attribution stability:** Using the same rolling 12-week holdouts, I extracted posterior incremental outcome by channel and tracked each channel’s contribution share. The box/line plots show how stable (or variable) channel attribution is across time windows—useful for assessing whether ROI/contributions are robust or sensitive to the evaluation period.
+<img width="792" height="556" alt="image" src="https://github.com/user-attachments/assets/8108c0ac-f265-4090-8def-93059a46b80d" /> <img width="655" height="469" alt="image" src="https://github.com/user-attachments/assets/7a61d997-5fa1-4374-b187-95e6c10261be" />
+
 
 
 ## Data source
