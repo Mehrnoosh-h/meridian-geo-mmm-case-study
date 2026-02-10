@@ -45,12 +45,6 @@ I quantified multicollinearity using Variance Inflation Factor (VIF). VIF measur
 - **VIF > 10**: strong multicollinearity (channel-level interpretation becomes unreliable)
 
 For my selected brand/SKU, VIF was extremely large:
-
-
-
-
-<p align="center"><strong>For my selected brand/SKU, VIF was extremely large:</strong></p>
-
 <table align="center">
   <thead>
     <tr>
