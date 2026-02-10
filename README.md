@@ -122,15 +122,6 @@ I evaluated generalization using a time-based holdout:
 Because this Meridian version’s `Analyzer.predictive_accuracy()` reports metrics for a user-selected subset of dates (via `selected_times`) and does not automatically tag `Train/Test` inside the returned object, I computed Train and Test metrics by running `predictive_accuracy()` twice: once on the training weeks and once on the holdout weeks.
 
 ### Predictive accuracy (Meridian)
-| Evaluation set | Metric     | Geo-level | National-level |
-|---|---|---:|---:|
-| Test  | R_Squared | 0.9483 | 0.9529 |
-| Test  | MAPE      | 0.1343 | 0.0185 |
-| Test  | wMAPE     | 0.1117 | 0.0182 |
-| Train | R_Squared | 0.9480 | 0.9889 |
-| Train | MAPE      | 0.1457 | 0.0277 |
-| Train | wMAPE     | 0.1200 | 0.0244 |
-
 
 <div align="center">
 
@@ -154,7 +145,6 @@ Because this Meridian version’s `Analyzer.predictive_accuracy()` reports metri
 </table>
 
 </div>
-
 
 **Interpretation:** Geo-level performance is consistent between Train and Test (R² ≈ 0.95 and wMAPE ≈ 0.11–0.12), suggesting the model generalizes reasonably well to unseen weeks. National-level errors are much smaller because aggregating across geographies reduces noise and cancels some geo-specific fluctuations, so MAPE/wMAPE on the national series can look substantially lower than geo-level metrics.
 
