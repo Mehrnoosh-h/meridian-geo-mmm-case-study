@@ -6,13 +6,13 @@
 
 **Data & scope.**
 - Source: Kaggle — “MMM Weekly Data (Geo India)”  
-- Subsetting: **Brand A**, **SKU 2** (weekly, multiple geos)
+- Subsetting: Brand A, SKU 2 (weekly, multiple geos)
 - Media channels used in this run: TV, Facebook, Print, Radio
 - Evaluation: rolling backtest with 12-week holdouts (multiple time splits)
 
 **Key modeling decisions.**
-- **Multicollinearity check:** I computed VIF and found extreme multicollinearity among some media signals (VIF on the order of **1e12–1e14**), meaning separate channel effects are not reliably identifiable without additional information.
-- **Resolution chosen:** I used the scenario where highly collinear channels are removed / simplified (rather than forcing the model to split nearly identical signals), prioritizing **stable, defensible attribution**.
+- **Multicollinearity check:** I computed VIF and found extreme multicollinearity among some media signals (VIF on the order of 1e12–1e14), meaning separate channel effects are not reliably identifiable without additional information.
+- **Resolution chosen:** I used the scenario where highly collinear channels are removed / simplified (rather than forcing the model to split nearly identical signals), prioritizing stable, defensible attribution.
 
 **Model validation (quality + out-of-sample).**
 - Meridian’s built-in reviewer checks: PASS overall, with a minor baseline review flag (occasional small negative baseline values).
@@ -20,12 +20,12 @@
   See: *Rolling backtest plots* (wMAPE and R² across holdout windows).
 
 **Attribution stability.**
-- I extracted **posterior incremental outcome** by channel for each rolling holdout window and tracked contribution share.
+- I extracted posterior incremental outcome by channel for each rolling holdout window and tracked contribution share.
 - Result: channel shares are generally stable across windows, supporting robust attribution rather than window-specific artifacts.
 
 **Decision insights (holdout window).**
-- **ROI (posterior mean):** TV **0.230**, Radio **0.223**, Print **0.147**, Facebook **0.080**
-- **Marginal ROI (posterior mean):** TV **0.108**, Radio **0.059**, Print **0.033**, Facebook **0.032**
+- **ROI (posterior mean):** TV 0.230, Radio 0.223, Print 0.147, Facebook 0.080
+- **Marginal ROI (posterior mean):** TV 0.108, Radio 0.059, Print 0.033, Facebook 0.032
 - **Implication:** TV and Radio are consistently the strongest candidates for incremental budget (highest “next-dollar” efficiency), while Facebook is the weakest in this window.
 
 **Repo outputs.**
@@ -60,7 +60,7 @@ For my selected brand/SKU, VIF was extremely large:
 </table>
 
 
-These values indicate **near-perfect collinearity** between the channels (they carry almost the same signal), so estimating separate effects for each one is not identifiable from the data alone.
+These values indicate near-perfect collinearity between the channels (they carry almost the same signal), so estimating separate effects for each one is not identifiable from the data alone.
 
 ### Options to handle multicollinearity
 Common strategies in MMM are:
@@ -81,19 +81,19 @@ Because YouTube/Instagram/Facebook were extremely collinear, I evaluated two sce
 **Scenario A — Combine correlated channels**
 - I combined the highly correlated channels into a single bundle feature and fit Meridian.
 - `reviewer.ModelReviewer(mmm).run()` summary (combined):
-  - Overall Status: **PASS**
-  - Baseline Check: **REVIEW** (P(baseline < 0) = 0.54)
-  - Goodness of Fit: **R² = 0.9496**, **MAPE = 0.1444**, **wMAPE = 0.1186**
+  - Overall Status: PASS
+  - Baseline Check: REVIEW (P(baseline < 0) = 0.54)
+  - Goodness of Fit: R² = 0.9496, MAPE = 0.1444, wMAPE = 0.1186
 
 **Scenario B — Remove Instagram and YouTube**
 - I removed Instagram and YouTube and fit the model using the remaining channels.
 - `reviewer.ModelReviewer(mmm).run()` summary (removed):
-  - Overall Status: **PASS**
-  - Baseline Check: **REVIEW** (P(baseline < 0) = 0.37)
-  - Goodness of Fit: **R² = 0.9490**, **MAPE = 0.1448**, **wMAPE = 0.1192**
+  - Overall Status: PASS
+  - Baseline Check: REVIEW (P(baseline < 0) = 0.37)
+  - Goodness of Fit: R² = 0.9490, MAPE = 0.1448, wMAPE = 0.1192
 
 ### Final choice and why
-Both scenarios achieved **nearly identical fit**, which confirms multicollinearity is mainly an interpretability problem (not a pure predictive-performance problem).
+Both scenarios achieved nearly identical fit, which confirms multicollinearity is mainly an interpretability problem (not a pure predictive-performance problem).
 
 **I chose Scenario B (remove Instagram and YouTube)** to reduce redundancy and improve identifiability in channel attribution. Given the extremely large VIF values (≈1e12–1e14), the three channels were carrying almost the same signal; keeping all of them can lead to unstable credit-splitting. Removing two highly collinear channels:
 - simplifies the model and reduces attribution ambiguity,
@@ -108,14 +108,14 @@ In both scenarios, the Model Reviewer flagged Baseline Check: REVIEW, meaning th
 - the model is fitting small residual fluctuations and a small portion of posterior draws cross below zero.
 
 In our comparison, Scenario B (removing Instagram & YouTube) reduced this issue:
-- Scenario A (combined): P(baseline < 0) = **0.54**
-- Scenario B (removed): P(baseline < 0) = **0.37**
+- Scenario A (combined): P(baseline < 0) = 0.54
+- Scenario B (removed): P(baseline < 0) = 0.37
 
 So, while both are still marked “REVIEW,” Scenario B shows fewer negative-baseline draws and is slightly more stable on this diagnostic. I treated this as a minor modeling artifact and verified it by visually inspecting the baseline curve in the model-fit charts; occasional small dips are expected in Bayesian MMM and do not invalidate the overall results.
 
 ## Out-of-sample (holdout) evaluation
 
-I evaluated generalization using a **time-based holdout**:
+I evaluated generalization using a time-based holdout:
 - **Train window:** 2022-07-04 → 2025-03-31 (144 weeks)
 - **Test (holdout) window:** 2025-04-07 → 2025-06-23 (12 weeks)
 
@@ -140,19 +140,19 @@ To ensure the results are not dependent on a single train/test split, I ran a ro
 ### Test-window stability (across 6 splits)
 
 **Geo-level (harder; one observation per geo×week):**
-- **wMAPE:** mean **0.1173**, std **0.0137** (range **0.1065–0.1442**)
-- **MAPE:** mean **0.1471**, std **0.0153** (range **0.1329–0.1719**)
-- **R²:** mean **0.9436**, std **0.0205** (range **0.9040–0.9607**)
+- **wMAPE:** mean 0.1173, std 0.0137 (range 0.1065–0.1442)
+- **MAPE:** mean 0.1471, std 0.0153 (range 0.1329–0.1719)
+- **R²:** mean 0.9436, std 0.0205 (range 0.9040–0.9607)
 
 **National-level (easier; aggregated across geos, lower noise):**
-- **wMAPE:** mean **0.0183**, std **0.0098** (range **0.0071–0.0342**)
-- **MAPE:** mean **0.0188**, std **0.0091** (range **0.0077–0.0347**)
-- **R²:** mean **0.9541**, std **0.0512** (range **0.8580–0.9959**)
+- **wMAPE:** mean 0.0183, std 0.0098 (range 0.0071–0.0342)
+- **MAPE:** mean 0.0188, std 0.0091 (range 0.0077–0.0347)
+- **R²:** mean 0.9541, std 0.0512 (range 0.8580–0.9959)
 
 ### Interpretation
-Overall, geo-level metrics are **stable across time** (Test wMAPE ≈ **0.11–0.14**, R² ≈ **0.90–0.96**), suggesting the model generalizes reasonably well to unseen weeks. National-level errors are much smaller because aggregation across geographies reduces noise and cancels some geo-specific fluctuations, so national metrics can look substantially better than geo-level metrics.
+Overall, geo-level metrics are stable across time (Test wMAPE ≈ 0.11–0.14, R² ≈ 0.90–0.96), suggesting the model generalizes reasonably well to unseen weeks. National-level errors are much smaller because aggregation across geographies reduces noise and cancels some geo-specific fluctuations, so national metrics can look substantially better than geo-level metrics.
 
-Notably, the **worst geo-level Test window** (wMAPE ≈ **0.1442**, R² ≈ **0.9040**) indicates a period where the model had more difficulty generalizing—potentially due to a regime shift (promotions, distribution changes, or seasonality effects) during that specific time window.
+Notably, the worst geo-level Test window (wMAPE ≈ 0.1442, R² ≈ 0.9040) indicates a period where the model had more difficulty generalizing—potentially due to a regime shift (promotions, distribution changes, or seasonality effects) during that specific time window.
 
 
 ### Rolling backtest (12-week holdouts)
@@ -190,10 +190,10 @@ After fitting the model, I computed both ROI and Marginal ROI on the most recent
   This is the key metric for budget reallocation, because MMM channels often show diminishing returns.
 
 **ROI (posterior mean):**
-- TV: **0.230**
-- Radio: **0.223**
-- Print: **0.147**
-- Facebook: **0.080**
+- TV: 0.230
+- Radio: 0.223
+- Print: 0.147
+- Facebook: 0.080
 <p align="center">
   <img src="https://github.com/user-attachments/assets/c76b2e12-96c7-4c53-8e27-43e86f13bcb9" width="520" />
   <br/>
@@ -202,10 +202,10 @@ After fitting the model, I computed both ROI and Marginal ROI on the most recent
 
 
 **Marginal ROI (posterior mean):**
-- TV: **0.108**
-- Radio: **0.059**
-- Print: **0.033**
-- Facebook: **0.032**
+- TV: 0.108
+- Radio: 0.059
+- Print: 0.033
+- Facebook: 0.032
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/ccc59c50-d016-4d82-9850-17cb47f081cb" width="520" />
@@ -236,17 +236,17 @@ To make the MMM outputs decision-oriented, I ran a simple reallocation simulatio
 
 Result: FB→TV yields the largest expected lift (≈96.9k), followed by FB→Radio (≈92.4k) in this holdout window.
 For the Facebook → TV shift:
-- Facebook holdout spend ≈ **6.44M**
-- Shifted spend (10%) ≈ **0.644M**
-- ROI(TV) − ROI(Facebook) ≈ **0.150**
-- Expected ΔOutcome ≈ **96,904** (in outcome units)
+- Facebook holdout spend ≈ 6.44M
+- Shifted spend (10%) ≈ 0.644M
+- ROI(TV) − ROI(Facebook) ≈ 0.150
+- Expected ΔOutcome ≈ 96,904 (in outcome units)
 
 This is an intentionally simple approximation (not a full optimizer), but it translates ROI results into a concrete, testable budget action.
 
 
 
 ## Data source
-This project uses the **“MMM Weekly Data – Geo: India”** dataset from Kaggle:  
+This project uses the “MMM Weekly Data – Geo: India” dataset from Kaggle:  
 https://www.kaggle.com/datasets/subhagatoadak/mmm-weekly-data-geoindia
 
 ## Dataset description
