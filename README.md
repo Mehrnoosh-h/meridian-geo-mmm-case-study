@@ -18,6 +18,12 @@
 - Meridian’s built-in reviewer checks: PASS overall, with a minor baseline review flag (occasional small negative baseline values).
 - Rolling 12-week holdouts show performance is stable across time (not driven by a single split).  
   See: *Rolling backtest plots* (wMAPE and R² across holdout windows).
+  
+  **Key results (at a glance)**
+- **Holdout performance (geo-level):** Test wMAPE ≈ 0.11–0.14, Test R² ≈ 0.90–0.96 (across rolling 12-week holdouts)
+- **Most efficient channels (marginal ROI):** TV (highest) → Radio (second)
+- **Simple what-if:** shifting 10% of Facebook spend → TV yields ~+96.9k expected outcome (back-of-the-envelope)
+
 
 **Attribution stability.**
 - I extracted posterior incremental outcome by channel for each rolling holdout window and tracked contribution share.
