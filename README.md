@@ -286,6 +286,11 @@ For the Facebook → TV shift:
 
 This is an intentionally simple approximation (not a full optimizer), but it translates ROI results into a concrete, testable budget action.
 
+## Notebook
+
+The full end-to-end analysis is available here:
+- `notebooks/meridian_geo_mmm_case_study.ipynb`
+It covers: data prep → multicollinearity (VIF) check → Meridian fit → holdout + rolling backtest → attribution stability → ROI & marginal ROI → simple what-if budget reallocation.
 
 
 ## Data source
