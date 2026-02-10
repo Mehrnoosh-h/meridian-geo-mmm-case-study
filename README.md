@@ -1,7 +1,6 @@
 ## Multicollinearity check (Meridian geo MMM, 1 brand + 1 SKU)
 
-## Executive summary 
-
+## Executive summary
 **Goal.** Build a geo-level Marketing Mix Model (MMM) using Google Meridian to estimate media contributions and derive actionable budget insights.
 
 **Data & scope.**
@@ -19,10 +18,33 @@
 - Rolling 12-week holdouts show performance is stable across time (not driven by a single split).  
   See: *Rolling backtest plots* (wMAPE and R² across holdout windows).
   
-  **Key results (at a glance)**
+**Key results (at a glance)**
+
 - **Holdout performance (geo-level):** Test wMAPE ≈ 0.11–0.14, Test R² ≈ 0.90–0.96 (across rolling 12-week holdouts)
 - **Most efficient channels (marginal ROI):** TV (highest) → Radio (second)
-- **Simple what-if:** shifting 10% of Facebook spend → TV yields ~+96.9k expected outcome (back-of-the-envelope)
+- **What-if (approx):** shifting 10% Facebook → TV gives +~96.9k outcome (back-of-the-envelope)
+
+## Reproducibility
+
+**Environment**
+- Python: 3.12.12
+- Platform: Linux-6.6.105+-x86_64-with-glibc2.35
+- numpy: 2.0.2
+- pandas: 2.2.2
+- matplotlib: 3.10.0
+- tensorflow: 2.19.0
+- google-meridian: version not exposed via `__version__` in this run
+
+**Run order (recommended)**
+1. Fit MMM + diagnostics (including multicollinearity check)
+2. Rolling backtest (12-week holdouts) + stability plots
+3. Attribution / contributions by split
+4. ROI + Marginal ROI (most recent holdout)
+5. What-if budget reallocation (back-of-the-envelope)
+
+**Outputs**
+- Figures: `reports/figures/`
+- Tables: `reports/tables/`
 
 
 **Attribution stability.**
